@@ -1,0 +1,824 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DG-Anúncios — Conectando você às melhores ofertas</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --of-blue: #0052cc;
+      --of-orange: #ff7f00;
+    }
+
+    #banner {
+      background: linear-gradient(90deg, var(--of-blue), var(--of-orange));
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+    }
+
+    .banner-search {
+      background: #fff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      width: 100%;
+    }
+
+    .banner-search input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 0.95rem;
+      color: #111;
+      padding: 0.5rem 0;
+    }
+
+    .banner-search button {
+      background: transparent;
+      border: none;
+      font-size: 1.1rem;
+      color: #555;
+      cursor: pointer;
+    }
+
+    #banner a {
+      color: white;
+      font-weight: 600;
+    }
+
+    #banner a:hover {
+      text-decoration: underline;
+    }
+
+    /* MENU INFERIOR */
+    .menu-bottom a {
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .menu-bottom a:hover {
+      color: #ffe7cc;
+    }
+
+    /* DROPDOWN CATEGORIAS */
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 1.6rem;
+      left: 0;
+      background: #1e293b;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      padding: 0.5rem 0;
+      min-width: 200px;
+      z-index: 100;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #eee;
+      white-space: nowrap;
+    }
+
+    .dropdown-menu a:hover {
+      background: var(--of-orange);
+      color: #fff;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    main {
+      padding-top: 120px;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-900 text-slate-100" id="page">
+
+  <!-- 🔹 CABEÇALHO -->
+  <header id="banner">
+    <!-- Linha superior -->
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 px-4 py-3">
+      <!-- Logo -->
+      <div class="flex items-center gap-2 min-w-[200px] pl-1">
+        <img src="assets/logo.svg" alt="DG-Anúncios"class="h-[55px] w-auto object-contain select-none" style="margin-top:1px">
+      </div>
+
+      <!-- Campo de busca -->
+      <div class="flex-1 max-w-2xl">
+        <div class="banner-search">
+          <input id="searchBanner" type="search" placeholder="Buscar produtos, lojas e promoções..." aria-label="Buscar produtos">
+          <button id="searchBtn">🔍</button>
+        </div>
+      </div>
+
+      <!-- Botão grupo -->
+      <div class="min-w-[160px] flex justify-end">
+         <!--<a id="whTop" href="#"
+          class="bg-[#ff7f00] hover:bg-[#ff9833] text-white px-4 py-2 rounded-md font-semibold shadow-md transition-all">
+          Entrar no grupo
+        </a>-->
+      </div>
+    </div>
+
+    <!-- Linha inferior (menu principal) -->
+    <nav class="w-full bg-white/10 py-2 relative">
+      <div class="max-w-7xl mx-auto flex items-center justify-center gap-8 text-base font-semibold menu-bottom">
+        
+        <!-- Dropdown Categorias -->
+        <div class="relative dropdown">
+          <a href="#" class="flex items-center gap-1">
+            Categorias ▼
+          </a>
+          <div class="dropdown-menu">
+            <a href="#veiculos">🚗 Veículos</a>
+            <a href="#supermercado">🛒 Supermercado</a>
+            <a href="#tecnologia">💻 Tecnologia</a>
+            <a href="#casa">🏠 Casa & Móveis</a>
+            <a href="#eletro">🔌 Eletrodomésticos</a>
+            <a href="#esportes">🏋️ Esportes e Fitness</a>
+            <a href="#ferramentas">🧰 Ferramentas</a>
+            <a href="#industria">🏭 Indústria e Comércio</a>
+            <a href="#petshop">🐾 Pet Shop</a>
+            <a href="#saude">💊 Saúde & Beleza</a>
+            <a href="#servicos">💼 Serviços</a>
+          </div>
+        </div>
+        <a href="#ofertas">Anúncios</a>
+        <a href="#cupons">Cupons</a>
+        <a href="#plans">Planos</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="pt-28 md:pt-32 transition-all duration-300">
+   
+    <!-- HERO OUTDOOR DIGITAL -->
+    <section 
+      class="relative w-full h-[90vh] bg-center bg-cover border-y-[18px] border-black shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
+      style="background-image: url('assets/outdoor-bg.png');">
+
+      <!-- Degradê e blur -->
+      <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/80 backdrop-blur-[1px]"></div>
+
+      <!-- Conteúdo -->
+      <div class="relative z-10 max-w-6xl mx-auto px-6 pt-[28vh]">
+          <h1 class="text-4xl md:text-6xl font-extrabold text-white drop-shadow-[0_8px_6px_rgba(0,0,0,0.8)]">
+              DG-Anúncios • Seu Outdoor Digital
+          </h1>
+
+          <p class="text-xl md:text-2xl text-white/90 max-w-2xl mt-4 drop-shadow-[0_6px_4px_rgba(0,0,0,0.9)]">
+            Conectando quem vende e quem busca as melhores oportunidades.
+          </p>
+
+          <div class="flex gap-3 mt-6">
+            <a id="cta" href="#" 
+              class="inline-flex items-center gap-3 px-6 py-3 rounded-full text-white font-semibold shadow-[0_0_30px_rgba(255,120,10,0.8)]"
+              style="background: linear-gradient(90deg,var(--of-blue),var(--of-orange));">
+              Entrar no grupo “DG-Anúncios”
+            </a>
+
+            <a id="frmcli" href="#" 
+              class="px-5 py-3 rounded-full border border-white/10 text-white/90 backdrop-blur-sm bg-white/10">
+              Quero anunciar
+            </a>
+          </div>
+      </div>
+    </section>
+
+
+    <!--<section class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      <div class="space-y-6">
+        <p class="text-lg text-slate-300 max-w-xl">O seu outdoor digital de anúncios — conectando quem vende e quem busca as melhores oportunidades, impulsionando negócios locais e digitais para todo o Brasil.</p>
+        <div class="flex gap-3">
+          <a id="cta" href="#" class="inline-flex items-center gap-3 px-6 py-3 rounded-full text-white font-semibold shadow-lg gradient-acc" style="background: linear-gradient(90deg,var(--of-blue),var(--of-orange));">Entrar no grupo “DG-Anúncios”</a>
+          <a id="frmcli" href="#" class="px-5 py-3 rounded-full border border-white/10 text-white/90" style="background: white; color: var(--of-blue);">Quero anunciar</a>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="rounded-2xl overflow-hidden shadow-2xl border border-white/5 bg-gradient-to-br from-slate-800 to-slate-900 p-6">
+          <h3 class="text-xl font-semibold">Anúncios do Dia</h3>
+            <a href="https://www.mercadolivre.com.br/smart-tv-de-50-lg-ut801c-50ut801c0sa-com-tela-led-4k-127220v-preto/p/MLB45672004?pdp_filters=item_id%3AMLB4092944315&from=gshop&matt_tool=39226283&matt_internal_campaign_id=&matt_word=&matt_source=google&matt_campaign_id=23233871478&matt_ad_group_id=188007922509&matt_match_type=&matt_network=g&matt_device=c&matt_creative=783149647178&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=735128188&matt_product_id=MLB45672004-product&matt_product_partition_id=2448954580254&matt_target_id=aud-1967156880386:pla-2448954580254&cq_src=google_ads&cq_cmp=23233871478&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=1&gad_campaignid=23233871478&gbraid=0AAAAAD93qcB1bUKxVwJYnnJEHT8McZb-J&gclid=CjwKCAiAw9vIBhBBEiwAraSATr8uVjywLESuSVjYVH9S3mtyNwRHmBEcb8O3LbpP8da0YbIB2VvT8xoC9ycQAvD_BwE" target="_blank">
+              <img src="assets/smart-tv-de-50.png" alt="iPhone 14 Pro Max 128GB" class="w-full h-72 object-cover">
+               <p class="text-slate-300 mt-2">TV Smart 50 — De R$ 3.465,10 por <span class="text-white font-bold">R$ 1.799,05</span></p>
+            </a>
+        </div>
+      </div>-->
+
+      <section id="carrossel" class="max-w-6xl mx-auto px-6 mt-20">
+        <h2 class="text-3xl font-bold text-white mb-6">📢 Painéis do Outdoor</h2>
+
+        <div class="relative overflow-hidden rounded-2xl shadow-2xl border border-white/10">
+
+            <!-- fundo outdoor -->
+            <div class="absolute inset-0 bg-center bg-cover"
+                style="background-image: url('assets/outdoor-bg.jpg'); filter: brightness(0.55);">
+            </div>
+
+            <div id="carouselSlides" class="relative z-10 flex transition-transform duration-700">
+
+                <!-- Slide 1 -->
+                <div class="min-w-full p-10">
+                  <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-xl">
+                    <img src="assets/notebook3.png" class="w-40 mx-auto">
+                    <h3 class="text-2xl text-white font-bold mt-4 text-center">
+                      Notebook Gamer Acer Nitro 5
+                    </h3>
+                    <p class="text-center text-white/80 mt-2">
+                      De 6.499 por <span class="text-orange-400 font-bold">4.899</span>
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="min-w-full p-10">
+                  <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-xl">
+                    <img src="assets/iPhone.png" class="w-40 mx-auto">
+                    <h3 class="text-2xl text-white font-bold mt-4 text-center">
+                      iPhone 14 Pro Max
+                    </h3>
+                    <p class="text-center text-white/80 mt-2">
+                      De 9.999 por <span class="text-orange-400 font-bold">8.499</span>
+                    </p>
+                  </div>
+                </div>
+
+            </div>
+        </div>
+      </section>
+
+
+    <!-- CARROSSEL DE OFERTAS RELEVANTES -->
+    <section id="carrossel" class="max-w-6xl mx-auto px-6 mt-12">
+      <h2 class="text-3xl font-bold text-white mb-6">🔥 Mais Relevantes</h2>
+      <div class="relative overflow-hidden rounded-2xl shadow-2xl border border-white/10">
+        <div id="carouselSlides" class="flex transition-transform duration-700 ease-in-out">
+          
+          <!-- slide 1 -->
+          <div class="min-w-full flex-shrink-0 relative">
+            <a href="https://www.amazon.com.br/Notebook-Nitro-ANV15-51-73E9-i7-13620H-NVIDIA/dp/B0D9WN8FY6/ref=asc_df_B0D9WN8FY6?mcid=50a270ee399c33538dcba8fb0260afcb&tag=googleshopp00-20&linkCode=df0&hvadid=709884378364&hvpos=&hvnetw=g&hvrand=600228989742406286&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1001744&hvtargid=pla-2341945663828&psc=1&language=pt_BR&gad_source=1" target="_blank">
+              <img src="assets/notebook3.png" alt="Notebook Gamer Acer Nitro 5" class="w-full h-72 object-cover">
+            </a>
+            <div class="absolute bottom-0 left-0 right-0 bg-black/60 text-white p-4">
+              <h3 class="text-xl font-semibold">Notebook Gamer Acer Nitro 5</h3>
+              <p class="text-sm text-slate-200">De R$ 6.499 por <span class="font-bold text-orange-400">R$ 4.899</span> — até 20/11</p>
+            </div>
+          </div>
+
+          <!-- slide 2 -->
+          <div class="min-w-full flex-shrink-0 relative">
+            <a href="https://shopee.com.br/Celular-iPhone-14-Pro-Max-128gb-5g-Dual-E-sim-CPO-Lacrado-Original-1-Ano-de-Garantia-Apple-i.985552786.27280828864?extraParams=%7B%22display_model_id%22%3A223997056109%2C%22model_selection_logic%22%3A3%7D&sp_atk=5e38b717-dd58-458d-b3cf-51af1943d601&xptdk=5e38b717-dd58-458d-b3cf-51af1943d601" target="_blank">
+              <img src="assets/iPhone.png" alt="iPhone 14 Pro Max 128GB" class="w-full h-72 object-cover">
+            </a>
+            <div class="absolute bottom-0 left-0 right-0 bg-black/60 text-white p-4">
+              <h3 class="text-xl font-semibold">iPhone 14 Pro Max 128GB</h3>
+              <p class="text-sm text-slate-200">De R$ 9.999 por <span class="font-bold text-orange-400">R$ 8.499</span> — até 25/11</p>
+            </div>
+          </div>
+
+          <!-- slide 3 -->
+          <div class="min-w-full flex-shrink-0 relative">
+            <a href="https://www.magazineluiza.com.br/smart-tv-55-lg-4k-qned-55qned70asa-webos-25-a7-ai-processor-4k-gen8-alexa-3-hdmi-2-usb/p/240467100/et/tves/?&seller_id=magazineluiza&utm_source=google&utm_medium=cpc&utm_term=81489&utm_campaign=google_eco_per_ven_pla_tc_apo_1p_et-csp-controle-cvr_v2&utm_content=&partner_id=81489&gclsrc=aw.ds&gad_source=4&gad_campaignid=22992464799&gbraid=0AAAAAD4zZmQmzmNx2HZNhqjbiSDBjDI8-&gclid=CjwKCAiAw9vIBhBBEiwAraSATl0ffOokbyEU5F11r6qnL9lEZzvxUro6tF4Llju9dkoRi-ti6Wup9xoCv9YQAvD_BwE" target="_blank">
+              <img src="assets/Smart TV LG OLED 55.png" alt="Smart TV LG OLED 55”" class="w-full h-72 object-cover">
+            </a>
+            <div class="absolute bottom-0 left-0 right-0 bg-black/60 text-white p-4">
+              <h3 class="text-xl font-semibold">Smart TV LG OLED 55”</h3>
+              <p class="text-sm text-slate-200">De R$ 6.442,00 por <span class="font-bold text-orange-400">R$ 2.849,05</span> — até 30/11</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- indicadores -->
+        <div class="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
+          <button class="w-3 h-3 rounded-full bg-white/40 hover:bg-white" data-slide="0"></button>
+          <button class="w-3 h-3 rounded-full bg-white/40 hover:bg-white" data-slide="1"></button>
+          <button class="w-3 h-3 rounded-full bg-white/40 hover:bg-white" data-slide="2"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFERTAS EM DESTAQUE (GRID 4) -->
+    <section id="ofertas" class="mt-20 max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-white mb-6">Ofertas em Destaque</h2>
+      <p class="text-slate-300 mb-10 max-w-2xl">Confira as promoções mais recentes do DG-Anúncios — atualizadas em tempo real.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        
+        <!-- Oferta 1 (marketplace) -->
+        <div class="bg-slate-800/60 rounded-2xl overflow-hidden shadow-lg border border-white/5 hover:scale-[1.02] transition">
+          <a href="https://www.amazon.com.br/dp/PRODUTO123" target="_blank">
+            <img src="assets/81UGhjKIQdL.png" alt="Smart TV 50” 4K Samsung" class="w-full h-48 object-cover">
+            <div class="p-5 space-y-2">
+              <h3 class="text-lg font-bold text-white">Smart TV 50 4K Samsung</h3>
+              <p class="text-sm text-slate-300"><span class="font-semibold text-white">Loja:</span> Amazon Brasil</p>
+              <p class="text-sm text-slate-300"><span class="font-semibold text-white">Tipo:</span> Marketplace</p>
+              <p class="text-sm text-slate-300 mt-2"><span class="font-semibold text-white">Descrição:</span> Smart TV UHD com Alexa integrada, 120Hz e HDR10+.</p>
+              <div class="mt-3 text-sm">
+                <p class="text-slate-400 line-through">De R$ 2.999</p>
+                <p class="text-xl font-bold text-white">R$ 2.199 <span class="text-sm text-green-400">(-26%)</span></p>
+                <p class="text-slate-400 mt-1">Validade: até 20/11/2025</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Oferta 2 (loja física) -->
+        <div class="bg-slate-800/60 rounded-2xl overflow-hidden shadow-lg border border-white/5 hover:scale-[1.02] transition">
+          <a href="https://wa.me/5521988884455?text=Olá!%20Vi%20o%20anúncio%20do%20Tênis%20Nike%20Air%20Max" target="_blank">
+            <img src="assets/tenis.png" alt="Tênis Nike Air Max" class="w-full h-48 object-cover">
+            <div class="p-5 space-y-2">
+              <h3 class="text-lg font-bold text-white">Tênis Nike Air Max</h3>
+              <p class="text-sm text-slate-300"><span class="font-semibold text-white">Loja:</span> Esporte Total</p>
+              <p class="text-sm text-slate-300"><span class="font-semibold text-white">Cidade:</span> Rio de Janeiro - RJ</p>
+              <p class="text-sm text-slate-300"><span class="font-semibold text-white">Contato:</span> (11) 99999-1234</p>
+              <p class="text-sm text-slate-300 mt-2"><span class="font-semibold text-white">Descrição:</span> Tênis original Nike Air Max masculino, várias cores.</p>
+              <div class="mt-3 text-sm">
+                <p class="text-slate-400 line-through">De R$ 699</p>
+                <p class="text-xl font-bold text-white">R$ 449 <span class="text-sm text-green-400">(-36%)</span></p>
+                <p class="text-slate-400 mt-1">Validade: até 25/11/2025</p>
+              </div>
+              <!-- <div class="flex flex-col gap-2 mt-4">
+                <a href="https://wa.me/5521988884455?text=Olá!%20Vi%20o%20anúncio%20do%20Tênis%20Nike%20Air%20Max" target="_blank" class="block px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-semibold text-center">Falar no WhatsApp</a>
+              </div>-->
+            </div>
+           </a>
+        </div>
+
+        <!-- Oferta 3 (marketplace) -->
+        <div class="bg-slate-800/60 rounded-2xl overflow-hidden shadow-lg border border-white/5 hover:scale-[1.02] transition">
+          <a href="https://www.magazineluiza.com.br/produto/CAFETEIRA123" target="_blank">
+            <img src="assets/images.jpeg" alt="Cafeteira Dolce Gusto" class="w-full h-48 object-cover">
+            <div class="p-5 space-y-2">
+              <h3 class="text-lg font-bold text-white">Cafeteira Dolce Gusto</h3>
+              <p class="text-sm text-slate-300"><span class="font-semibold text-white">Loja:</span> Magazine Luiza</p>
+              <p class="text-sm text-slate-300 mt-2"><span class="font-semibold text-white">Descrição:</span> Cafeteira automática com cápsulas inclusas.</p>
+              <div class="mt-3 text-sm">
+                <p class="text-slate-400 line-through">De R$ 499</p>
+                <p class="text-xl font-bold text-white">R$ 299 <span class="text-sm text-green-400">(-40%)</span></p>
+                <p class="text-slate-400 mt-1">Validade: até 22/11/2025</p>
+              </div>
+              <!-- <div class="flex flex-col gap-2 mt-4">
+                <a href="https://www.magazineluiza.com.br/produto/CAFETEIRA123" target="_blank" class="block px-4 py-2 rounded-md bg-gradient-to-r from-blue-600 to-orange-500 text-white font-semibold text-center">Ver Ofertas</a>
+              </div>-->
+            </div>
+          </a>
+        </div>
+
+        <!-- Oferta 4 (loja física) -->
+        <div class="bg-slate-800/60 rounded-2xl overflow-hidden shadow-lg border border-white/5 hover:scale-[1.02] transition">
+          <a href="assets/anuncio4.jpg" target="_blank">
+            <img src="assets/1174287793.jpg" alt="Notebook Lenovo i5 8GB SSD" class="w-full h-48 object-cover">
+            <div class="p-5 space-y-2">
+              <h3 class="text-lg font-bold text-white">Notebook Lenovo i5 8GB SSD</h3>
+              <p class="text-sm text-slate-300"><span class="font-semibold text-white">Loja:</span> TechSmart Informática</p>
+              <p class="text-sm text-slate-300"><span class="font-semibold text-white">Cidade:</span> Belo Horizonte - MG</p>
+              <p class="text-sm text-slate-300"><span class="font-semibold text-white">Contato:</span> (11) 99999-1234</p>
+              <p class="text-sm text-slate-300 mt-2"><span class="font-semibold text-white">Descrição:</span> Notebook Lenovo i5 com SSD 256GB e Windows 11.</p>
+              <div class="mt-3 text-sm">
+                <p class="text-slate-400 line-through">De R$ 3.499</p>
+                <p class="text-xl font-bold text-white">R$ 2.799 <span class="text-sm text-green-400">(-20%)</span></p>
+                <p class="text-slate-400 mt-1">Validade: até 30/11/2025</p>
+              </div>
+              <!-- <div class="flex flex-col gap-2 mt-4">
+                <a href="https://wa.me/5531988889090?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Notebook%20Lenovo" target="_blank" class="block px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-semibold text-center">Falar no WhatsApp</a>
+              </div> -->
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section id="how" class="mt-20 max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-white">Como funciona</h2>
+      <p class="text-slate-300 max-w-2xl mt-3">DG-Anúncios conecta empresas e marketplaces, centraliza promoções e permite que consumidores encontrem anúncios por categoria, cidade ou desconto.</p>
+      <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 bg-slate-800/60 rounded-xl">
+          <h4 class="font-semibold text-white">1. Cadastre sua loja</h4>
+          <p class="text-slate-300 mt-2">Crie perfil da empresa e publique anúncios em minutos.</p>
+        </div>
+        <div class="p-6 bg-slate-800/60 rounded-xl">
+          <h4 class="font-semibold text-white">2. Integre marketplaces</h4>
+          <p class="text-slate-300 mt-2">Sincronize automaticamente anúncios do Mercado Livre, Shopee e outros.</p>
+        </div>
+        <div class="p-6 bg-slate-800/60 rounded-xl">
+          <h4 class="font-semibold text-white">3. Alcance clientes</h4>
+          <p class="text-slate-300 mt-2">Anúncios aparecem no site e podem ser compartilhadas em redes e WhatsApp.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLANOS -->
+    <section id="plans" class="mt-20 max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-white">Planos para empresas</h2>
+      <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 bg-white/5 rounded-xl">
+          <h4 class="font-semibold text-white">Free</h4>
+          <p class="text-slate-300 mt-2">Até 3 anúncios ativas • Sem custo</p>
+          <p class="text-2xl font-bold mt-4">Grátis</p>
+        </div>
+        <div class="p-6 bg-white/5 rounded-xl border border-indigo-700">
+          <h4 class="font-semibold text-white">Premium</h4>
+          <p class="text-slate-300 mt-2">Anúncios ilimitadas • Destaque na home • Analytics</p>
+          <p class="text-2xl font-bold mt-4">R$ 39,90 / mês</p>
+        </div>
+        <div class="p-6 bg-white/5 rounded-xl">
+          <h4 class="font-semibold text-white">Integrator</h4>
+          <p class="text-slate-300 mt-2">Conexão com Marketplaces • Relatórios avançados</p>
+          <p class="text-2xl font-bold mt-4">R$ 99,90 / mês</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BOTTOM -->
+    <section class="mt-20">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="bg-gradient-to-r from-indigo-700 to-orange-500 rounded-2xl p-8 shadow-2xl text-white">
+          <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h3 class="text-2xl font-bold">Quer alcançar mais clientes?</h3>
+              <p class="mt-2 text-white/90">
+                Cadastre-se hoje mesmo e impulsione suas vendas anunciando no outdoor digital.
+              </p>
+            </div>
+
+            <div>
+              <a id="ctaBottom" href="#"
+                class="inline-flex items-center gap-3 px-6 py-3 rounded-full font-semibold shadow-lg"
+                style="background: white; color: var(--of-blue);">
+                Entrar no grupo "DG-Anúncios Oficial"
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AVISO IMPORTANTE -->
+    <section class="mt-14">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="bg-slate-800/60 border border-white/10 rounded-2xl p-6 text-slate-300 text-sm leading-relaxed">
+          <strong class="text-white">Aviso importante:</strong>  
+          A DG-Anúncios não comercializa produtos — apenas divulga ofertas, funcionando como um outdoor digital.
+          A veracidade das informações, a entrega e todas as condições de venda são de responsabilidade exclusiva da loja anunciante.
+        </div>
+      </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="mt-20 pb-12">
+      <div class="max-w-6xl mx-auto px-6 text-slate-400">
+        <div class="flex flex-col md:flex-row justify-between items-start gap-6">
+          <div>
+            <h4 class="text-white font-semibold">DG-Anúncios</h4>
+            <p class="text-slate-300 mt-2">Conectando você às melhores anúncios.</p>
+          </div>
+          <div>
+            <h5 class="text-white font-semibold">Contato</h5>
+            <p class="mt-2">E-mail: di-silva23@hotmail.com</p>
+          </div>
+        </div>
+        <div class="mt-8 border-t border-white/5 pt-6 text-sm text-slate-500">© 2025 DG-Anúncios. Todos os direitos reservados.</div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- WhatsApp quick button -->
+  <a id="whFloat" href="#" class="fixed bottom-6 right-6 inline-flex items-center gap-3 p-4 rounded-full text-white shadow-lg" style="background: linear-gradient(90deg,var(--of-blue),var(--of-orange)); z-index:999;">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="white"><path d="M20.52 3.48A11.928 11.928 0 0012 0C5.373 0 0 5.373 0 12a11.93 11.93 0 001.7 6.04L0 24l6.14-1.62A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12 0-3.19-1.22-6.17-3.48-8.52zM12 21.6c-.95 0-1.88-.18-2.75-.53L6 20l.96-2.97A9.6 9.6 0 012.4 12 9.6 9.6 0 0112 2.4c5.3 0 9.6 4.3 9.6 9.6S17.3 21.6 12 21.6z"/></svg>
+    Entrar no grupo
+  </a>
+
+  <!-- Modal: Formulário de Entrada -->
+  <div id="modalForm" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-[9999]">
+    <div class="bg-white text-slate-800 w-96 p-6 rounded-xl shadow-2xl relative">
+
+      <button id="closeModal" class="absolute top-3 right-3 text-xl">✖</button>
+
+      <h2 class="text-2xl font-bold mb-4">Entrar no grupo</h2>
+      <p class="text-slate-600 mb-4">Preencha os dados para receber o link de acesso ao grupo.</p>
+
+      <form id="formGrupo" class="space-y-4">
+
+        <div>
+          <label class="font-semibold">Nome:</label>
+          <input type="text" id="nome" class="w-full px-3 py-2 border rounded-md" required>
+        </div>
+
+        <div>
+          <label class="font-semibold">Contato (WhatsApp):</label>
+          <input type="text" id="contato" class="w-full px-3 py-2 border rounded-md" required maxlength="15">
+        </div>
+
+        <div>
+          <label class="font-semibold">E-mail:</label>
+          <input type="email" id="email" class="w-full px-3 py-2 border rounded-md" required>
+        </div>
+
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-md">
+          Enviar
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Cadastro de Cliente -->
+  <div id="modalCadastroCli" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-[9999]">
+    <div class="bg-white text-slate-800 w-96 max-h-[90vh] overflow-y-auto p-6 rounded-xl shadow-2xl relative">
+      <button id="closeModalcli" class="absolute top-3 right-3 text-xl">✖</button>
+
+      <h2 class="text-2xl font-bold mb-4">Cadastro de Cliente</h2>
+      <p class="text-slate-600 mb-4">Preencha os dados para cadastrar seu cliente.</p>
+
+      <form id="formCadastroCliente" class="space-y-4">
+
+       <!-- Tipo + CPF/CNPJ lado a lado -->
+        <div class="flex gap-4">
+          
+          <!-- Tipo -->
+          <div class="w-1/3">
+            <label class="font-semibold">Tipo:</label>
+            <select id="tipoDoc" class="w-full px-3 py-2 border rounded-md" required>
+              <option value="">Selecione</option>
+              <option value="cpf">CPF</option>
+              <option value="cnpj">CNPJ</option>
+            </select>
+          </div>
+
+          <!-- CPF / CNPJ -->
+          <div class="w-2/3">
+            <label class="font-semibold" id="labelDocumento">CPF / CNPJ:</label>
+            <input type="text" id="documento" class="w-full px-3 py-2 border rounded-md" required>
+          </div>
+        </div>
+
+        <!-- Nome / Razão Social -->
+        <div>
+          <label class="font-semibold">Nome / Razão Social:</label>
+          <input type="text" id="nomeRazao" class="w-full px-3 py-2 border rounded-md" required>
+        </div>
+
+        <!-- Telefone Fixo + Celular lado a lado -->
+        <div class="flex gap-4">
+
+          <!-- Telefone Fixo -->
+          <div class="w-1/2">
+            <label class="font-semibold">Telefone Fixo:</label>
+            <input 
+              type="text" 
+              id="telefoneFixo" 
+              class="w-full px-3 py-2 border rounded-md" 
+              placeholder="(00) 0000-0000">
+          </div>
+
+          <!-- Celular / WhatsApp -->
+          <div class="w-1/2">
+            <label class="font-semibold">Celular / WhatsApp:</label>
+            <input 
+              type="text" 
+              id="celular" 
+              class="w-full px-3 py-2 border rounded-md" 
+              required 
+              maxlength="15"
+              placeholder="(00) 00000-0000">
+          </div>
+        </div>
+
+        <!-- Endereço -->
+        <div>
+          <label class="font-semibold">Endereço:</label>
+          <input type="text" id="endereco" class="w-full px-3 py-2 border rounded-md" required>
+        </div>
+
+        <!-- Cidade -->
+        <div>
+          <label class="font-semibold">Cidade:</label>
+          <input type="text" id="cidade" class="w-full px-3 py-2 border rounded-md" required>
+        </div>
+
+        <!-- Botão -->
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-md">
+          Cadastrar
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+
+  <!-- SCRIPTS: carrossel, sidebar, theme, links, Modal -->
+  <script>
+
+    // --- Modal Formulário clientes---
+    const modalCli = document.getElementById("modalCadastroCli");
+    const closeModalCli = document.getElementById("closeModalcli");
+
+    // Botões que abrem o modal
+    ["frmcli"].forEach(id => {
+      const btn = document.getElementById(id);
+      if (btn) {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          modalCli.classList.remove("hidden");
+          modalCli.classList.add("flex");
+        });
+      }
+    });
+
+    // Fechar modal
+    closeModalCli.addEventListener("click", () => {
+      modalCli.classList.add("hidden");
+      modalCli.classList.remove("flex");
+    });
+
+    modalCli.addEventListener("click", (e) => {
+      if (e.target === modalCli) {
+        modalCli.classList.add("hidden");
+        modalCli.classList.remove("flex");
+      }
+    });
+
+
+
+
+
+
+
+
+
+
+
+    // --- Modal Formulário usuarios---
+    const modal = document.getElementById("modalForm");
+    const closeModal = document.getElementById("closeModal");
+
+    // Botões que abrem o modal
+    ["cta", "ctaBottom", "whFloat"].forEach(id => {
+      const btn = document.getElementById(id);
+      if (btn) {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+        });
+      }
+    });
+
+    // Fechar modal
+    closeModal.addEventListener("click", () => {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      }
+    });
+
+   // Envio do formulário
+    document.getElementById("formGrupo").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const nome = document.getElementById("nome").value;
+      const contato = document.getElementById("contato").value;
+      const email = document.getElementById("email").value;
+
+      console.log("Dados enviados:", nome, contato, email);
+
+      alert("Cadastro realizado! Agora você será redirecionado para o grupo.");
+
+      // Limpa formulário
+      document.getElementById("formGrupo").reset();
+
+      // Fecha o modal antes de abrir uma nova aba
+      document.getElementById("modalForm").classList.add("hidden");
+
+      // Abre o WhatsApp
+      abrirWhatsApp();
+    });
+
+    function abrirWhatsApp() {
+      const link = "https://chat.whatsapp.com/LNVC2QKYeK17hzGHUHq8Nn";
+      const novaAba = window.open(link, "_blank");
+
+      if (!novaAba) {
+        window.location.href = link;
+      }
+    }
+
+    // Máscara de Contato
+    function maskContato(value) {
+      return value
+        .replace(/\D/g, "")                // Remove tudo que não for número
+        .replace(/^(\d{2})(\d)/, "($1) $2") // (99) 9
+        .replace(/(\d{5})(\d)/, "$1-$2")    // 99999-9999
+        .slice(0, 15);                      // Limite de caracteres
+    }
+
+    const campoContato = document.getElementById("contato");
+
+    campoContato.addEventListener("input", function () {
+      this.value = maskContato(this.value);
+    });
+
+    // Sidebar mobile open/close
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const menuBtn = document.getElementById('menuBtn');
+    const closeSidebar = document.getElementById('closeSidebar');
+
+    function openSidebar(){ sidebar.classList.remove('-translate-x-full'); overlay.classList.remove('hidden'); }
+    function closeSidebarFunc(){ sidebar.classList.add('-translate-x-full'); overlay.classList.add('hidden'); }
+
+    if(menuBtn) menuBtn.addEventListener('click', openSidebar);
+    if(closeSidebar) closeSidebar.addEventListener('click', closeSidebarFunc);
+    if(overlay) overlay.addEventListener('click', closeSidebarFunc);
+
+    // Ensure sidebar state on resize
+    window.addEventListener('resize', () => {
+      if(window.innerWidth >= 768){
+        sidebar.classList.remove('-translate-x-full');
+        overlay.classList.add('hidden');
+      } else {
+        sidebar.classList.add('-translate-x-full');
+      }
+    });
+
+    // Carousel
+    const slides = document.getElementById('carouselSlides');
+    const buttons = document.querySelectorAll('[data-slide]');
+    let index = 0;
+    const totalSlides = 3;
+
+    function updateCarousel(){
+      if(!slides) return;
+      slides.style.transform = `translateX(-${index * 100}%)`;
+      buttons.forEach((b,i) => {
+        b.classList.toggle('bg-white', i === index);
+        b.classList.toggle('bg-white/40', i !== index);
+      });
+    }
+
+    if(buttons) buttons.forEach((btn,i) => btn.addEventListener('click', ()=>{ index = i; updateCarousel(); }));
+    setInterval(()=>{ index = (index + 1) % totalSlides; updateCarousel(); }, 5000);
+    updateCarousel();
+
+    // Theme toggle
+    const page = document.getElementById('page');
+    const themeToggle = document.getElementById('themeToggle');
+    if(themeToggle){
+      themeToggle.addEventListener('click', function(){
+        document.documentElement.classList.toggle('light');
+        if(document.documentElement.classList.contains('light')){
+          page.classList.replace('bg-slate-900','bg-white');
+          page.classList.replace('text-slate-100','text-slate-900');
+        } else {
+          page.classList.replace('bg-white','bg-slate-900');
+          page.classList.replace('text-slate-900','text-slate-100');
+        }
+      });
+    }
+
+    // Set WhatsApp / CTAs links - replace with your real link
+    //const wlink = 'https://chat.whatsapp.com/SEU_LINK_AQUI';
+    //['cta','ctaBottom','whTop','whFloat'].forEach(id => {
+      //const el = document.getElementById(id);
+      //if(el) el.setAttribute('href', wlink);
+    //});
+
+    // Banner search basic action (example)
+    const searchBtn = document.getElementById('searchBtn');
+    const searchBanner = document.getElementById('searchBanner');
+    if(searchBtn && searchBanner){
+      searchBtn.addEventListener('click', () => {
+        const q = encodeURIComponent(searchBanner.value.trim());
+        if(!q) { searchBanner.focus(); return; }
+        // exemplo: redireciona para resultados (implement your results page)
+        window.location.href = `/?s=${q}`;
+      });
+      searchBanner.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter'){
+          e.preventDefault();
+          searchBtn.click();
+        }
+      });
+    }
+  </script>
+</body>
+</html>
